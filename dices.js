@@ -65,9 +65,8 @@ init()
 lightsOn()
 loadDice(function(){
     let ratio = window.innerWidth / window.innerHeight
-    ratio = ratio > 1 ? ratio : 1/ratio
     let dist = camera.position.z
-    let [x, y] = [0.66, 0.85]
+    let [x, y] = ratio > 1 ? [0.66, 0.85] : [0.5, 0.3]
     x = x * ratio * dist / 2
     y = y / ratio * dist / 2
     this.position.set(x, y, 0)
@@ -77,8 +76,7 @@ loadDice(function(){
 loadDice(function(){
     let ratio = window.innerWidth / window.innerHeight
     let dist = camera.position.z
-    ratio = ratio > 1 ? ratio : 1/ratio
-    let [x, y] = [-0.6, -0.8]
+    let [x, y] = ratio > 1 ? [-0.6, -0.8] : [-0.6, -0.3]
     x = x * ratio * dist / 2
     y = y / ratio * dist / 2
     this.position.set(x, y, 0)

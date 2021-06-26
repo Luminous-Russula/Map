@@ -150,6 +150,8 @@ body{
 		box-shadow: -5px -5px 20px #fab7, 5px 5px 20px #5017,
 		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,
 		;
+		
+		margin-bottom: 2vh;
 	}
 	
 	&__gobtn{
@@ -170,6 +172,7 @@ body{
 			transform: scale(1);
 			filter: brightness(0.9);
 		}
+		margin-bottom: 2vh;
 	}
 	
 	margin-top: 5vh;
@@ -270,6 +273,49 @@ body{
 	background: linear-gradient(to bottom, #501, #fab, #501);
 	box-shadow: 0 0 1px #fff5 inset;
 }
+
+
+@media screen and (max-width: 768px){
+	.bg{
+		padding: 10px;
+	}
+	
+	.scrollbar{
+		display: none;
+	}
+	.sect{
+		height: auto;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	
+	.main{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 10px 25px;
+		&__title, &__descr{
+			padding: 5px;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+		&__descr{
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		&__gobtn{
+			width: 75px;
+			height: 75px;
+			font-size: 150%;
+		}
+	}
+	.contactus{
+		display: none;
+	}
+}
+
+
+
+
 
 
 
