@@ -3,15 +3,15 @@ let entities = []
 
 function init() {
     scene = new THREE.Scene()
-    scene.background = new THREE.Color('#000')
-    scene.background = null
+    // scene.background = null
     
     camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 5000)
     camera.position.z = 12
 
-    renderer = new THREE.WebGLRenderer({antialias:true})
+    renderer = new THREE.WebGLRenderer({antialias:true, alpha:true})
     renderer.setSize(window.innerWidth, window.innerHeight)
-    document.body.appendChild(renderer.domElement)
+    // document.body.appendChild(renderer.domElement)
+    document.querySelector('.bg').insertBefore(renderer.domElement, document.querySelector('.bg').firstChild)
     renderer.domElement.classList.add('dicesbg')
 }
 
@@ -45,7 +45,7 @@ function loadDice(update = null){
         let [dice,dots] = obj.children
         
         let dicemat = new THREE.MeshStandardMaterial(
-        {color:'#222', metalness:0, roughness: 0.5})
+        {color:'#111', metalness:0, roughness: 0.5})
         let dotsmat = new THREE.MeshStandardMaterial(
         {color:'#501', metalness:0, roughness: 0})
         
@@ -78,7 +78,7 @@ loadDice(function(){
     let ratio = window.innerWidth / window.innerHeight
     let dist = camera.position.z
     ratio = ratio > 1 ? ratio : 1/ratio
-    let [x, y] = [-0.5, -0.75]
+    let [x, y] = [-0.6, -0.8]
     x = x * ratio * dist / 2
     y = y / ratio * dist / 2
     this.position.set(x, y, 0)
