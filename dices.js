@@ -10,7 +10,8 @@ function init() {
 
     renderer = new THREE.WebGLRenderer({antialias:true, alpha:true})
     renderer.setSize(window.innerWidth, window.innerHeight)
-    document.body.appendChild(renderer.domElement)
+    // document.body.appendChild(renderer.domElement)
+    document.querySelector('.bg').insertBefore(renderer.domElement, document.querySelector('.bg').firstChild)
     renderer.domElement.classList.add('dicesbg')
 }
 

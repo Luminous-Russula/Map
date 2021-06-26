@@ -72,8 +72,6 @@ $clrtxt1: hsl(348, 100%, 97%);
 	text-shadow: 0 0 5px #000;
 }
 
-/* font-family: 'Bebas Neue', cursive; */
-/* font-family: 'Indie Flower', cursive; */
 *{
 	z-index: 3;
 }
@@ -112,7 +110,9 @@ body{
 }
 
 .main{
-	height: 100%;
+	border-radius: 15px;
+	border: 2px solid #fab3;
+	height: 90%;
 	justify-content: flex-start;
 	
 	&__title{
