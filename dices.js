@@ -78,7 +78,7 @@ loadDice(function(){
     let ratio = window.innerWidth / window.innerHeight
     let dist = camera.position.z
     ratio = ratio > 1 ? ratio : 1/ratio
-    let [x, y] = [-0.5, -0.75]
+    let [x, y] = [-0.6, -0.8]
     x = x * ratio * dist / 2
     y = y / ratio * dist / 2
     this.position.set(x, y, 0)
