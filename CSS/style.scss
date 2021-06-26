@@ -108,8 +108,8 @@ body{
 		content: "";
 		@include background-fixed;
 		// background: linear-gradient(to bottom right, $clrg1, $clrg2);
-		// background: linear-gradient(to bottom right, #333, #111);
-		background: linear-gradient(to bottom right, #545, #312);
+		// background: linear-gradient(to bottom right, #545, #312);
+		background: linear-gradient(to bottom right, #333, #111);
 		z-index: -2;
 	}
 }
@@ -210,9 +210,44 @@ body{
 }
 
 
+.footer{
+	@include flex;
+	@include light-text;
+	justify-content: space-around;
+	padding: 25px;
+	
+	&__git{
+		font-size: 50px;
+		color: $clrg1;	
+		transition-duration: 255ms;
+		&:hover{
+			transform: scale(1.25);
+			filter: drop-shadow(0 0 3px $clrg1);
+		}
+	}
+}
 
-
-
+.contactus{
+	@include light-text;
+	position: fixed;
+	right: 5vh;
+	top: 90vh;
+	font-size: 50px;
+	padding: 15px;
+	border-radius: 50%;
+	z-index: 3;
+	
+	border: 3px solid $clrg1;
+	opacity: 0.5;
+	
+	cursor: pointer;
+	
+	transition-duration: 255ms;
+	&:hover{
+		transform: scale(1.1);
+		opacity: 1;
+	}
+}
 
 
 
