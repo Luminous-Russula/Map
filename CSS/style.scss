@@ -56,8 +56,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
 
-$clrg1: hsl(348, 100%, 90%);
-$clrg2: hsl(348, 100%, 17%);
+$clrg1: hsl(348, 50%, 90%);
+$clrg2: hsl(348, 50%, 17%);
 $clrtxt1: hsl(348, 100%, 97%);
 
 @mixin flex($orientation: row){
@@ -85,11 +85,11 @@ $clrtxt1: hsl(348, 100%, 97%);
 	z-index: 3;
 }
 
-
 body{
 	padding: 0;
 	margin: 0;
 	// overflow: hidden;
+	background-color: #000;
 }
 
 .dicesbg{
@@ -99,6 +99,7 @@ body{
 }
 
 .bg{
+	position: relative;
 	z-index: 1;
 	// background: linear-gradient(to bottom right, $clrg1, $clrg2);
 	// @include flex(column);
@@ -107,9 +108,9 @@ body{
 	&:before{
 		content: "";
 		@include background-fixed;
-		// background: linear-gradient(to bottom right, $clrg1, $clrg2);
+		background: linear-gradient(to bottom right, $clrg1, $clrg2);
 		// background: linear-gradient(to bottom right, #545, #312);
-		background: linear-gradient(to bottom right, #333, #111);
+		// background: linear-gradient(to bottom right, #333, #111);
 		z-index: -2;
 	}
 }
@@ -142,7 +143,9 @@ body{
 		background: linear-gradient(to bottom right, #faba, #5015);
 		border-radius: 10px;
 		
+		
 		@include light-text;
+		text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
 		
 		box-shadow: -5px -5px 20px #fab7, 5px 5px 20px #5017,
 		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,
@@ -178,6 +181,7 @@ body{
 	border-radius: 15px;
 	border: 2px solid #fab3;
 	height: 90%;
+	box-shadow: 0 0 25px #0005;
 }
 
 .level{
@@ -251,7 +255,21 @@ body{
 	}
 }
 
-
+::-webkit-scrollbar{
+	width: 0;
+}
+.scrollbar{
+	$w : 5px;
+	position: fixed;
+	z-index: 3;
+	right: 0;
+	top: 0;
+	height: 100px;
+	width: $w;
+	border-radius: $w;
+	background: linear-gradient(to bottom, #501, #fab, #501);
+	box-shadow: 0 0 1px #fff5 inset;
+}
 
 
 
