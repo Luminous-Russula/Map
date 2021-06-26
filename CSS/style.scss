@@ -104,7 +104,7 @@ body{
 }
 
 .main, .header, .footer{
-	max-width: 1000px;
+	max-width: 75vw;
 	width: 100%;
 	@include flex(column);
 }
@@ -113,22 +113,33 @@ body{
 	border-radius: 15px;
 	border: 2px solid #fab3;
 	height: 90%;
-	justify-content: flex-start;
+	justify-content: space-around;
+	
+	backdrop-filter: blur(10px);
 	
 	&__title{
 		@include light-text;
 		font-size: 50px;
 		padding: 50px;
-		width: 100%;
+		width: 50%;
 		text-align: center;
 	}
 	
 	&__descr{
 		padding: 50px;
-		width: 100%;
+		width: 50%;
 		text-align: center;
 		line-height: 2em;
 		font-size: 20px;
+		
+		background: linear-gradient(to bottom right, #fff5, #0002);
+		border-radius: 10px;
+		
+		@include light-text;
+		
+		box-shadow: -5px -5px 20px #fff3, 5px 5px 20px #2223,
+		5px 5px 20px #fff3 inset, -5px -5px 20px #2223 inset,
+		;
 	}
 	
 	&__gobtn{
@@ -140,9 +151,13 @@ body{
 		background: linear-gradient(to bottom right, #fff, #0000);
 		cursor: pointer;
 		
-		transition-duration: 255ms;
+		transition-duration: 125ms;
 		&:hover{
 			transform: scale(1.1);
+		}
+		&:active{
+			transform: scale(1);
+			filter: brightness(0.9);
 		}
 	}
 }
