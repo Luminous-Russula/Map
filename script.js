@@ -3,13 +3,12 @@ let entities = []
 
 function init() {
     scene = new THREE.Scene()
-    scene.background = new THREE.Color('#000')
-    scene.background = null
+    // scene.background = null
     
     camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 5000)
     camera.position.z = 12
 
-    renderer = new THREE.WebGLRenderer({antialias:true})
+    renderer = new THREE.WebGLRenderer({antialias:true, alpha:true})
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
     renderer.domElement.classList.add('dicesbg')
@@ -45,7 +44,7 @@ function loadDice(update = null){
         let [dice,dots] = obj.children
         
         let dicemat = new THREE.MeshStandardMaterial(
-        {color:'#222', metalness:0, roughness: 0.5})
+        {color:'hsl(348, 100%, 90%)', metalness:0, roughness: 0.5})
         let dotsmat = new THREE.MeshStandardMaterial(
         {color:'#501', metalness:0, roughness: 0})
         
