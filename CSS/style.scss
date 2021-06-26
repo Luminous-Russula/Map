@@ -204,8 +204,10 @@ body{
 		border-radius: 10px;
 		@include light-text;
 		box-shadow: 
-		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,
-		;
+		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,;
+		
+		@include flex;
+		flex-wrap: wrap;
 	}
 }
 
@@ -214,7 +216,7 @@ body{
 	@include flex;
 	@include light-text;
 	justify-content: space-around;
-	padding: 25px;
+	padding: 15px 0;
 	
 	&__git{
 		font-size: 50px;
@@ -231,14 +233,14 @@ body{
 	@include light-text;
 	position: fixed;
 	right: 5vh;
-	top: 90vh;
+	top: 85vh;
 	font-size: 50px;
 	padding: 15px;
 	border-radius: 50%;
 	z-index: 3;
 	
-	border: 3px solid $clrg1;
-	opacity: 0.5;
+	border: 7px solid $clrg1;
+	opacity: 0.25;
 	
 	cursor: pointer;
 	
