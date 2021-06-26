@@ -44,7 +44,7 @@ function loadDice(update = null){
         let [dice,dots] = obj.children
         
         let dicemat = new THREE.MeshStandardMaterial(
-        {color:'hsl(348, 100%, 90%)', metalness:0, roughness: 0.5})
+        {color:'#111', metalness:0, roughness: 0.5})
         let dotsmat = new THREE.MeshStandardMaterial(
         {color:'#501', metalness:0, roughness: 0})
         

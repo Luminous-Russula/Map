@@ -67,6 +67,11 @@ $clrtxt1: hsl(348, 100%, 97%);
 	flex-direction: $orientation;
 }
 
+@mixin light-text {
+	color: $clrtxt1;
+	text-shadow: 0 0 5px #000;
+}
+
 /* font-family: 'Bebas Neue', cursive; */
 /* font-family: 'Indie Flower', cursive; */
 *{
@@ -90,6 +95,10 @@ body{
 	z-index: 2;
 }
 
+.dicesbg{
+	pointer-events: none;
+}
+
 .bg{
 	z-index: 1;
 	background: linear-gradient(to bottom right, $clrg1, $clrg2);
@@ -107,9 +116,8 @@ body{
 	justify-content: flex-start;
 	
 	&__title{
+		@include light-text;
 		font-size: 50px;
-		color: $clrtxt1;
-		text-shadow: 0 0 5px #000;
 		padding: 50px;
 		width: 100%;
 		text-align: center;
@@ -124,10 +132,18 @@ body{
 	}
 	
 	&__gobtn{
+		@include light-text;
 		border-radius: 50%;
-		padding: 50px;
 		width: 100px;
 		height: 100px;
+		font-size: 200%;
+		background: linear-gradient(to bottom right, #fff, #0000);
+		cursor: pointer;
+		
+		transition-duration: 255ms;
+		&:hover{
+			transform: scale(1.1);
+		}
 	}
 }
 
