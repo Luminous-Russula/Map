@@ -12,6 +12,10 @@ let anchor = document.querySelector('.level')
 let gobtn = document.querySelector('.main__gobtn')
 let cury, targy
 
+setTimeout(function () {
+    window.scrollTo(0, 0)
+}, 100)
+
 gobtn.onclick = (e)=>{
     cury = window.pageYOffset
     targy = anchor.getBoundingClientRect().top - 10
