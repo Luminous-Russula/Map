@@ -7,3 +7,4 @@ window.onscroll = (e)=>{
     let h = (window.pageYOffset) / (H + scrollH*2)
     scroll.style.top = `${h*100}%`
 }
+
