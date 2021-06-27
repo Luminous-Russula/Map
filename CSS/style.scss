@@ -56,8 +56,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
 
-$clrg1: hsl(348, 50%, 95%);
-$clrg2: hsl(348, 50%, 17%);
+$clrg1: hsl(348, 100%, 90%);
+$clrg2: hsl(250, 50%, 25%);
 $clrtxt1: hsl(348, 100%, 97%);
 
 @mixin flex($orientation: row){
@@ -212,7 +212,6 @@ body{
 		justify-content: space-around;
 		flex-wrap: wrap;
 		padding: 15px;
-		padding-right: 0;
 		padding-bottom: 0;
 		
 		&-row{
@@ -224,6 +223,7 @@ body{
 				height: 100px;
 				border-radius: 50%;
 				border: 5px solid #0001;
+				margin-bottom: 15px;
 			}
 		}
 	}
@@ -250,23 +250,24 @@ body{
 .contactus{
 	@include light-text;
 	position: fixed;
-	right: 5vh;
-	top: 85vh;
-	font-size: 50px;
+	right: 0;
+	top: 100vh;
+	font-size: 33px;
 	padding: 15px;
 	border-radius: 50%;
 	z-index: 3;
 	
-	border: 7px solid $clrg1;
+	border: 2px solid #fffa;
 	opacity: 0.25;
 	
 	cursor: pointer;
 	
 	transition-duration: 255ms;
 	&:hover{
-		transform: scale(1.1);
 		opacity: 1;
 	}
+	
+	transform: translate(-25%, -125%);
 }
 
 ::-webkit-scrollbar{
