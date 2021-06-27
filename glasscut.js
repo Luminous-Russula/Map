@@ -1,4 +1,4 @@
-function makeGlassCut(parent, cutwidth=7, clr1='#fab5', clr2='#5015', clrOutline = '#fff3', outlineWidth=2){
+function makeGlassCut(parent, cutwidth=7, clr1='hsla(348, 50%, 90%, 0.5)', clr2='hsla(348, 50%, 17%, 0.1)', clrOutline = '#fff3', outlineWidth=2){
     let bounds = parent.getBoundingClientRect()
     parent.style.position = 'relative'
     parent.style.overflow = 'hidden'
