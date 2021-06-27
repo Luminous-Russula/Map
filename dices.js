@@ -35,7 +35,7 @@ function lightsOn(){
     addPointLight('#fff', 0.5, 1, -1, 1)
 }        
     
-function loadDice(update = null){
+function loadDice(update = null, dark){
     let loader = new THREE.GLTFLoader()
     loader.load('./src/Models/TestDiceSolid.glb', function(gltf){
         let obj = gltf.scene.children[0]
@@ -45,9 +45,9 @@ function loadDice(update = null){
         let [dice,dots] = obj.children
         
         let dicemat = new THREE.MeshStandardMaterial(
-        {color:'#111', metalness:0, roughness: 0.5})
+        {color: dark ? '#111' : '#666', metalness:0, roughness: 0.5})
         let dotsmat = new THREE.MeshStandardMaterial(
-        {color:'#501', metalness:0, roughness: 0})
+        {color: '#501', metalness:0, roughness: 0})
         
         dice = new THREE.Mesh(dice.geometry, dicemat)
         dots = new THREE.Mesh(dots.geometry, dotsmat)
@@ -71,7 +71,7 @@ loadDice(function(){
     y = y / ratio * dist / 2
     this.position.set(x, y, 0)
     this.rotation.set(deg(45)+time(1), deg(45)+time(1), deg(45))
-})
+}, 1)
 
 loadDice(function(){
     let ratio = window.innerWidth / window.innerHeight

@@ -69,7 +69,7 @@ $clrtxt1: hsl(348, 100%, 97%);
 
 @mixin light-text {
 	color: $clrtxt1;
-	text-shadow: 0 0 1px #000, 0 0 2px #000, 0 0 5px #000,;
+	text-shadow: 0 0 3px #000,0 0 3px #000,0 0 3px #000,0 0 3px #000,;
 }
 
 @mixin background-fixed {
@@ -140,15 +140,14 @@ body{
 		line-height: 2em;
 		font-size: 20px;
 		
-		background: linear-gradient(to bottom right, #faba, #5015);
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.75));
 		border-radius: 10px;
 		
 		
 		@include light-text;
-		text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
 		
-		box-shadow: -5px -5px 20px #fab7, 5px 5px 20px #5017,
-		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,
+		box-shadow: -5px -5px 20px transparentize($clrg1, 0.5), 5px 5px 20px transparentize($clrg2, 0.5),
+		-5px -5px 20px transparentize($clrg1, 0.65) inset, 5px 5px 20px transparentize($clrg2, 0.65) inset,
 		;
 		
 		margin-bottom: 2vh;
@@ -160,8 +159,8 @@ body{
 		width: 100px;
 		height: 100px;
 		font-size: 200%;
-		background: linear-gradient(to bottom right, #faba, #5015);
-		box-shadow: -5px -5px 10px #faba inset, 5px 5px 10px #501a inset,;
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
+		box-shadow: -5px -5px 10px transparentize($clrg1, 0.25) inset, 5px 5px 10px transparentize($clrg2, 0.25) inset,;
 		cursor: pointer;
 		
 		transition-duration: 125ms;
@@ -192,7 +191,7 @@ body{
 	margin-bottom: 5vh;
 	padding: 50px 0;
 	
-	background: linear-gradient(to bottom right, #fab5, #5015);
+	background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
 	
 	@include flex(column);
 	justify-content: space-around;
@@ -207,11 +206,11 @@ body{
 		flex-basis: 100%;
 
 		width: 75%;		
-		background: linear-gradient(to bottom right, #fab5, #5011);
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
 		border-radius: 10px;
 		@include light-text;
 		box-shadow: 
-		-5px -5px 20px #fab7 inset, 5px 5px 20px #5017 inset,;
+		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
 		
 		@include flex;
 		flex-wrap: wrap;
