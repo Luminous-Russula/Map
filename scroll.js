@@ -18,6 +18,9 @@ setTimeout(function () {
 
 gobtn.onclick = (e)=>{
     cury = window.pageYOffset
+    
+    if(cury > window.innerHeight*0.5){return null}
+    
     targy = anchor.getBoundingClientRect().top - 10
     
     gobtn.smoothScroll = setInterval(()=>{
