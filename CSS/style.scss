@@ -56,7 +56,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
 
-$clrg1: hsl(348, 50%, 90%);
+$clrg1: hsl(348, 50%, 95%);
 $clrg2: hsl(348, 50%, 17%);
 $clrtxt1: hsl(348, 100%, 97%);
 
@@ -140,15 +140,11 @@ body{
 		line-height: 2em;
 		font-size: 20px;
 		
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.75));
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
 		border-radius: 10px;
-		
-		
 		@include light-text;
-		
-		box-shadow: -5px -5px 20px transparentize($clrg1, 0.5), 5px 5px 20px transparentize($clrg2, 0.5),
-		-5px -5px 20px transparentize($clrg1, 0.65) inset, 5px 5px 20px transparentize($clrg2, 0.65) inset,
-		;
+		box-shadow: 
+		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
 		
 		margin-bottom: 2vh;
 	}
@@ -159,7 +155,7 @@ body{
 		width: 100px;
 		height: 100px;
 		font-size: 200%;
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.3), transparentize($clrg2, 0.5));
 		box-shadow: -5px -5px 10px transparentize($clrg1, 0.25) inset, 5px 5px 10px transparentize($clrg2, 0.25) inset,;
 		cursor: pointer;
 		
@@ -212,8 +208,24 @@ body{
 		box-shadow: 
 		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
 		
-		@include flex;
+		@include flex(column);
+		justify-content: space-around;
 		flex-wrap: wrap;
+		padding: 15px;
+		padding-right: 0;
+		padding-bottom: 0;
+		
+		&-row{
+			width: 100%;
+			@include flex;
+			justify-content: space-around;
+			&>*{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				border: 5px solid #0001;
+			}
+		}
 	}
 }
 
@@ -269,12 +281,12 @@ body{
 	height: 100px;
 	width: $w;
 	border-radius: $w;
-	background: linear-gradient(to bottom, #501, #fab, #501);
+	background: linear-gradient(to bottom, transparentize($clrg2, 1), $clrg1, transparentize($clrg2, 1));
 	box-shadow: 0 0 1px #fff5 inset;
 }
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 900px){
 	.bg{
 		padding: 10px;
 	}
@@ -302,6 +314,7 @@ body{
 			margin-bottom: 20px;
 		}
 		&__gobtn{
+			display: none;
 			width: 75px;
 			height: 75px;
 			font-size: 150%;
