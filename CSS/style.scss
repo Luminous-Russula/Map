@@ -270,7 +270,7 @@ body{
 }
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 900px){
 	.bg{
 		padding: 10px;
 	}
@@ -298,6 +298,7 @@ body{
 			margin-bottom: 20px;
 		}
 		&__gobtn{
+			display: none;
 			width: 75px;
 			height: 75px;
 			font-size: 150%;
