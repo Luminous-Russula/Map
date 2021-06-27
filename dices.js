@@ -33,7 +33,7 @@ function lightsOn(){
     addPointLight('#fff', 0.5, 1, 1, 1)
     addPointLight('#fff', 0.5, -1, -1, 1)
     addPointLight('#fff', 0.5, 1, -1, 1)
-}        
+}        asdasdasd
     
 function loadDice(update = null){
     let loader = new THREE.GLTFLoader()
