@@ -1,0 +1,147 @@
+
+// ██████╗░███████╗░██████╗███████╗████████╗  ░██████╗████████╗██╗░░░██╗██╗░░░░░███████╗
+// ██╔══██╗██╔════╝██╔════╝██╔════╝╚══██╔══╝  ██╔════╝╚══██╔══╝╚██╗░██╔╝██║░░░░░██╔════╝
+// ██████╔╝█████╗░░╚█████╗░█████╗░░░░░██║░░░  ╚█████╗░░░░██║░░░░╚████╔╝░██║░░░░░█████╗░░
+// ██╔══██╗██╔══╝░░░╚═══██╗██╔══╝░░░░░██║░░░  ░╚═══██╗░░░██║░░░░░╚██╔╝░░██║░░░░░██╔══╝░░
+// ██║░░██║███████╗██████╔╝███████╗░░░██║░░░  ██████╔╝░░░██║░░░░░░██║░░░███████╗███████╗
+// ╚═╝░░╚═╝╚══════╝╚═════╝░╚══════╝░░░╚═╝░░░  ╚═════╝░░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝
+
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+
+// ███╗░░░███╗░█████╗░██╗███╗░░██╗
+// ████╗░████║██╔══██╗██║████╗░██║
+// ██╔████╔██║███████║██║██╔██╗██║
+// ██║╚██╔╝██║██╔══██║██║██║╚████║
+// ██║░╚═╝░██║██║░░██║██║██║░╚███║
+// ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝
+
+.block__container{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, rgb(153, 79, 79), rgb(250, 197, 197));
+}
+
+.block__glass{ //стекло
+  height: 500px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+  background: rgba( 255, 255, 255, 0.10 );
+  box-shadow: 6px 6px 8px 0px rgba(34, 60, 80, 0.2);
+  backdrop-filter: blur( 11.5px );
+  -webkit-backdrop-filter: blur( 11.5px);
+  border-radius: 20px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+// ██████╗░██╗░░░██╗████████╗████████╗░█████╗░███╗░░██╗
+// ██╔══██╗██║░░░██║╚══██╔══╝╚══██╔══╝██╔══██╗████╗░██║
+// ██████╦╝██║░░░██║░░░██║░░░░░░██║░░░██║░░██║██╔██╗██║
+// ██╔══██╗██║░░░██║░░░██║░░░░░░██║░░░██║░░██║██║╚████║
+// ██████╦╝╚██████╔╝░░░██║░░░░░░██║░░░╚█████╔╝██║░╚███║
+// ╚═════╝░░╚═════╝░░░░╚═╝░░░░░░╚═╝░░░░╚════╝░╚═╝░░╚══╝
+
+.element__heartbutton{ //сама кнопка
+  border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	font-size: 200%;
+	background: linear-gradient(135deg, rgb(153, 79, 79), rgb(250, 197, 197));
+	box-shadow: -5px -5px 10px rgba(34, 60, 80, 0.4) inset, 5px 5px 10px rgba(34, 60, 80, 0.4) inset;
+	cursor: pointer;
+	animation: unlock__button 2s infinite alternate;
+}
+
+.element__heartbutton-position{ //позиция на стекле
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.element__lock{ //замок
+	width: 75%;
+  transform: translate(13%, 0);
+	animation: unlock__lock 2s infinite alternate;
+}
+
+.element__heart{ //сердце
+	width: 20%;
+	animation: unlock__heart 2s infinite alternate;
+}
+
+// ░█████╗░███╗░░██╗██╗███╗░░░███╗░█████╗░████████╗██╗░█████╗░███╗░░██╗
+// ██╔══██╗████╗░██║██║████╗░████║██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+// ███████║██╔██╗██║██║██╔████╔██║███████║░░░██║░░░██║██║░░██║██╔██╗██║
+// ██╔══██║██║╚████║██║██║╚██╔╝██║██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+// ██║░░██║██║░╚███║██║██║░╚═╝░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+// ╚═╝░░╚═╝╚═╝░░╚══╝╚═╝╚═╝░░░░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
+
+@keyframes unlock__heart{ //анимация увелечения и изменения цвета сердечка
+  0%{
+    transform: translate(-187%, 20%);
+		filter: brightness(0) invert(1);
+  }
+  100%{
+    transform: scale(3) translate(-62%, 2%);
+		filter: none;
+  }
+}
+
+@keyframes unlock__lock{ //анимация исчезновения замка
+  0%{
+		opacity: 1;
+  }
+  100%{
+		opacity: 0;
+  }
+}
+
+@keyframes unlock__button{ //анимация изменения цвета кнопки
+  0%{
+		background: linear-gradient(135deg, rgb(153, 79, 79), rgb(250, 197, 197));
+		box-shadow: -5px -5px 10px rgba(34, 60, 80, 0.4) inset, 5px 5px 10px rgba(34, 60, 80, 0.4) inset;
+  }
+  100%{
+		background: linear-gradient(135deg, rgb(153, 79, 79), rgb(250, 197, 197));
+		box-shadow: -5px -5px 10px rgba(34, 60, 80, 0.1) inset, 5px 5px 10px rgba(34, 60, 80, 0.1) inset;
+
+  }
+}
