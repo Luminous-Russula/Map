@@ -125,7 +125,7 @@ new THREE.MeshStandardMaterial({
 function(){
     let ratio = window.innerWidth / window.innerHeight
     let dist = camera.position.z
-    let [x, y, z, t] = '3, 8, -20, 0.1'.split(',').map(e => parseFloat(e))
+    let [x, y, z, t] = '3, 6, -20, 0.1'.split(',').map(e => parseFloat(e))
     y += sin(time(t*3))/10
     x = x * ratio * dist / 2
     y = y / ratio * dist / 2
@@ -136,14 +136,4 @@ function(){
 })
 
 animate()
-
-
-
-
-
-
-
-
-
-
 

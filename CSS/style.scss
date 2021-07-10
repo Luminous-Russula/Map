@@ -47,14 +47,14 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 
 
-// 888b     d888          d8b          
-// 8888b   d8888          Y8P          
-// 88888b.d88888                       
-// 888Y88888P888  8888b.  888 88888b.  
-// 888 Y888P 888     "88b 888 888 "88b 
-// 888  Y8P  888 .d888888 888 888  888 
-// 888   "   888 888  888 888 888  888 
-// 888       888 "Y888888 888 888  888 
+// 888b     d888 d8b          d8b          
+// 8888b   d8888 Y8P          Y8P          
+// 88888b.d88888                           
+// 888Y88888P888 888 888  888 888 88888b.  
+// 888 Y888P 888 888 `Y8bd8P' 888 888 "88b 
+// 888  Y8P  888 888   X88K   888 888  888 
+// 888   "   888 888 .d8""8b. 888 888  888 
+// 888       888 888 888  888 888 888  888 
 @mixin flex($orientation:row) {
 	display: flex;
 	justify-content: center;
@@ -75,19 +75,67 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 	object-fit: $fit;
 }
 
-$clrbg1: #fff;
+@mixin makeConvex($primclr:#fa5, $offset:5px, $scale:20px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	box-shadow: 
+	$offp $offp $scale $clrdark,
+	$offm $offm $scale $clrlight,
+	;
+}
+
+@mixin makeConcave($primclr:#fa5, $offset:5px, $scale:20px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	box-shadow: 
+	$offp $offp $scale $clrdark inset,
+	$offm $offm $scale $clrlight inset,
+	;
+}
+
+
+@mixin textConvex($primclr:#fa5, $offset:3px, $scale:5px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	text-shadow: 
+	$offm $offm $scale $clrlight,
+	$offp $offp $scale $clrdark,
+	;
+}
+
+$clrbg1: #d9d9d9;
+$clrbg2: #555;
+$clrbright: #fa5;
 
 $clrhero: #555;
 $clrherobord: transparent;
-
 $heropadding: 50px;
 $herocorn: 50px;
+$herobr: 5px;
 
-$herobr: 25px;
-
-
+// 888b     d888          d8b          
+// 8888b   d8888          Y8P          
+// 88888b.d88888                       
+// 888Y88888P888  8888b.  888 88888b.  
+// 888 Y888P 888     "88b 888 888 "88b 
+// 888  Y8P  888 .d888888 888 888  888 
+// 888   "   888 888  888 888 888  888 
+// 888       888 "Y888888 888 888  888 
 body{
 	background-color: $clrbg1;
+	overflow-x: hidden;
 }
 
 .hero{
@@ -111,10 +159,16 @@ body{
 		text-align: center;
 		background-color: $clrbg1;
 		color: #aaa;
-		font-size: 100px;
+		font-size: 10vh;
 		width: 2000px;
-		padding: 50px;
+		padding: 5vh;
 		box-shadow: 0 0 50px black;
+		
+		font-family: 'Ubuntu', sans-serif;
+		text-transform: uppercase;
+		letter-spacing: 2.5vh;
+		
+		@include textConvex($clrbg1, 1px, 3px, 75%, 75%);
 	}
 	
 	&__panel1{
@@ -161,17 +215,63 @@ body{
 	position: absolute;
 }
 
+.filler{
+	height: 100vh;
+}
 
+hr{
+	height: 2px;
+	width: 100vw;
+	background: radial-gradient(circle at center, #555, $clrbg1);
+}
 
+.footer{
+	@include flex;
+	justify-content: space-between;
+	padding: 25px 200px;
+	font-size: 16px;
+	
+	&__gitlink{
+		font-size: 33px;
+		color: $clrbright;
+		border-radius: 50%;
+		padding: 5px;
+		border: 3px solid $clrbright;
+		
+		@include flex;
+		@include makeConvex($clrbg1, 5px, 10px, 100%, 50%);
+		
+		transition-duration: 255ms;
+		&:hover{
+			@include makeConvex($clrbg1, 7px, 10px, 100%, 75%);
+		}
+	}
+}
 
+.main{
+	@include flex(column);
+	padding: 25px 300px;
+	
+	&-advice:not(:last-child){
+		margin-bottom: 50px;
+	}
+	&-advice{
+		padding: 25px;
+		width: 100%;
+		@include flex(column);
+		
+		border-radius: 5px;
+	}
+}
 
-
-
-
-
-
-
-
+.bounds{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99;
+}
 
 
 
