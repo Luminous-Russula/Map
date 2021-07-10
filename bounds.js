@@ -54,7 +54,7 @@ function updateBounds(){
 }
 
 document.onclick = (e)=>{
-    if(boundsInd && boundsInd!=1){return null}
+    if(boundsInd && boundsInd != 1){return null}
     if(boundsInd){
         openBounds()
     }
