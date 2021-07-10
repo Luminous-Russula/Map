@@ -55,285 +55,122 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888  Y8P  888 .d888888 888 888  888 
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
-
-$clrg1: hsl(0, 100%, 95%);
-$clrg2: hsl(250, 50%, 17%);
-
-$clrtxt1: hsl(348, 100%, 97%);
-
-@mixin flex($orientation: row){
+@mixin flex($orientation:row) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: $orientation;
 }
 
-@mixin light-text {
-	color: $clrtxt1;
-	text-shadow: 0 0 3px #000,0 0 3px #000,0 0 3px #000,0 0 3px #000,;
-}
-
-@mixin background-fixed {
-	position: fixed;
+@mixin center($position: absolute){
+	position: $position;
 	left: 50%;
 	top: 50%;
-	width: 100vw;
-	height: 100vh;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);	
 }
 
-*{
-	z-index: 3;
+@mixin imageScale($x:200px, $y:$x, $fit:contain){
+	width: $x;
+	height: $y;
+	object-fit: $fit;
 }
+
+$clrbg1: #fff;
+
+$clrhero: #555;
+$clrherobord: transparent;
+
+$heropadding: 50px;
+$herocorn: 50px;
+
+$herobr: 25px;
+
 
 body{
-	padding: 0;
-	margin: 0;
-	// overflow: hidden;
-	background-color: #000;
+	background-color: $clrbg1;
 }
 
-.dicesbg{
-	@include background-fixed;
-	z-index: -1;
-	pointer-events: none;
-}
-
-.bg{
-	position: relative;
-	z-index: 1;
-	// background: linear-gradient(to bottom right, $clrg1, $clrg2);
-	// @include flex(column);
-	background: #fff url('../src/pattern2.png');
-	background-size: 25%;
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: repeat;
-	padding: 0 13vw;
+.hero{
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	
-	&:before{
-		content: "";
-		@include background-fixed;
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.1), transparentize($clrg2, 0.25));
-		background-position: center;
-		background-repeat: repeat;
-		// background: linear-gradient(to bottom right, $clrg1, $clrg2);
-		// background: linear-gradient(to bottom right, #545, #312);
-		// background: linear-gradient(to bottom right, #333, #111);
-		z-index: -2;
+	&__panel1, &__panel2{
+		position: absolute;
+		background-color: $clrhero;
+		border: 5px solid $clrherobord;
 	}
-}
-
-.main, .header, .footer{
-	width: 100%;
-	@include flex(column);
-}
-
-.main{
-	justify-content: space-around;
 	
-	
-	&__title{
-		@include light-text;
-		font-size: 50px;
-		padding: 50px;
-		width: 50%;
+	&__love, &__map{
+		z-index: 10;
+		position: absolute;
 		text-align: center;
-	}
-	
-	&__descr{
-		
+		background-color: $clrbg1;
+		color: #aaa;
+		font-size: 100px;
+		width: 2000px;
 		padding: 50px;
-		width: 75%;
-		text-align: center;
-		line-height: 2em;
-		font-size: 20px;
+		box-shadow: 0 0 50px black;
+	}
+	
+	&__panel1{
+		top: 50%;
+		left: 50%;
+		transform: translate(-100%, -50%);
 		
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-		border-radius: 10px;
-		@include light-text;
-		box-shadow: 
-		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
+		width: calc(50vw - #{$heropadding});
+		height: calc(100vh - #{$heropadding});
 		
-		margin-bottom: 2vh;
+		border-radius: $herobr 0 5px $herobr;
+		border-right: none;
+		border-bottom: none;
 	}
 	
-	&__gobtn{
-		@include light-text;
-		border-radius: 50%;
-		width: 100px;
-		height: 100px;
-		font-size: 200%;
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.3), transparentize($clrg2, 0.5));
-		box-shadow: -5px -5px 10px transparentize($clrg1, 0.25) inset, 5px 5px 10px transparentize($clrg2, 0.25) inset,;
-		cursor: pointer;
+	&__panel2{
+		top: 50%;
+		right: 50%;
+		transform: translate(100%, -50%) translateY(- $herocorn / 2) translateX(-5px);
 		
-		transition-duration: 125ms;
-		&:hover{
-			transform: scale(1.15);
-		}
-		&:active{
-			transform: scale(1);
-			filter: brightness(0.9);
-		}
-		margin-bottom: 2vh;
-	}
-	
-	margin-top: 5vh;
-	margin-bottom: 5vh;
-}
-
-.sect{
-	backdrop-filter: blur(10px);
-	border-radius: 15px;
-	border: 2px solid #fab3;
-	height: 90%;
-	box-shadow: 0 0 25px #0005;
-}
-
-.level{
-	height: 50%;
-	margin-bottom: 5vh;
-	padding: 50px 0;
-	
-	background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-	
-	@include flex(column);
-	justify-content: space-around;
-	
-	&__title{
-		margin-bottom: 5vh;
-		font-size: 33px;
-		@include light-text;
-	}
-	
-	&-content{
-		flex-basis: 100%;
-
-		width: 75%;		
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-		border-radius: 10px;
-		@include light-text;
-		box-shadow: 
-		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
+		width: calc(50vw - #{$heropadding});
+		height: calc(100vh - #{$heropadding} - #{$herocorn});
 		
-		@include flex(column);
-		justify-content: space-around;
-		flex-wrap: wrap;
-		padding: 15px;
-		padding-bottom: 0;
-		
-		&-row{
-			width: 100%;
-			@include flex;
-			justify-content: space-around;
-			&>*{
-				width: 100px;
-				height: 100px;
-				border-radius: 50%;
-				border: 5px solid #0001;
-				margin-bottom: 15px;
-			}
-		}
+		border-radius: 0 $herobr $herobr 0;
+		border-left: none;
+		border-bottom: none;
+	}
+	
+	&__love{
+		left: 27%;
+		top: 50%;
+		transform: translate(-50%, -50%) rotate(60deg);
+	}
+	
+	&__map{
+		right: 30%;
+		top: 50%;
+		transform: translate(50%, -50%) rotate(60deg);
 	}
 }
 
-
-.footer{
-	@include flex;
-	@include light-text;
-	justify-content: space-around;
-	padding: 15px 0;
-	
-	&__git{
-		font-size: 50px;
-		color: $clrg1;	
-		transition-duration: 255ms;
-		&:hover{
-			transform: scale(1.25);
-			filter: drop-shadow(0 0 3px $clrg1);
-		}
-	}
-}
-
-.contactus{
-	@include light-text;
-	position: fixed;
-	right: 0;
-	top: 100vh;
-	font-size: 33px;
-	padding: 15px;
-	border-radius: 50%;
-	z-index: 3;
-	
-	border: 2px solid #fffa;
-	opacity: 0.25;
-	
-	cursor: pointer;
-	
-	transition-duration: 255ms;
-	&:hover{
-		opacity: 1;
-	}
-	
-	transform: translate(-25%, -125%);
-}
-
-::-webkit-scrollbar{
-	width: 0;
-}
-.scrollbar{
-	$w : 5px;
-	position: fixed;
-	z-index: 3;
-	right: 0;
-	top: 0;
-	height: 100px;
-	width: $w;
-	border-radius: $w;
-	background: linear-gradient(to bottom, transparentize($clrg2, 1), $clrg1, transparentize($clrg2, 1));
-	box-shadow: 0 0 1px #fff5 inset;
+.canvas3d{
+	z-index: 5;
+	position: absolute;
 }
 
 
-@media screen and (max-width: 900px){
-	.bg{
-		padding: 10px;
-	}
-	
-	.scrollbar{
-		display: none;
-	}
-	.sect{
-		height: auto;
-		width: 100%;
-		margin-bottom: 10px;
-	}
-	
-	.main{
-		margin-top: 10px;
-		margin-bottom: 10px;
-		padding: 10px 25px;
-		&__title, &__descr{
-			padding: 5px;
-			width: 100%;
-			margin-bottom: 10px;
-		}
-		&__descr{
-			font-size: 16px;
-			margin-bottom: 20px;
-		}
-		&__gobtn{
-			display: none;
-			width: 75px;
-			height: 75px;
-			font-size: 150%;
-		}
-	}
-	.contactus{
-		display: none;
-	}
-}
+
+
+
+
+
+
+
+
+
 
 
 
