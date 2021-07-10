@@ -1,4 +1,4 @@
-function makeGlassCut(parent, cutwidth=10, clr1='hsla(348, 50%, 95%, 0.5)', clr2='hsla(348, 50%, 17%, 0.1)', clrOutline = '#fff3', outlineWidth=2){
+function makeGlassCut(parent, cutwidth=10, clr1='hsla(348, 100%, 90%, 0.5)', clr2='hsla(348, 50%, 17%, 0.1)', clrOutline = '#fff3', outlineWidth=2){
     let bounds = parent.getBoundingClientRect()
     parent.style.position = 'relative'
     parent.style.overflow = 'hidden'
@@ -60,7 +60,7 @@ function makeGlassCut(parent, cutwidth=10, clr1='hsla(348, 50%, 95%, 0.5)', clr2
     let grad = ctx.createLinearGradient(0, 0, w, h)
     
     grad.addColorStop(0, clr1)
-    grad.addColorStop(1, clr2)
+    grad.addColorStop(0, clr2)
     
     ctx.fillStyle = grad
     ctx.fill('evenodd')

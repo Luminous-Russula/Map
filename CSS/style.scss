@@ -56,8 +56,9 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
 
-$clrg1: hsl(348, 100%, 90%);
-$clrg2: hsl(250, 50%, 25%);
+$clrg1: hsl(0, 100%, 95%);
+$clrg2: hsl(250, 50%, 17%);
+
 $clrtxt1: hsl(348, 100%, 97%);
 
 @mixin flex($orientation: row){
@@ -103,12 +104,20 @@ body{
 	z-index: 1;
 	// background: linear-gradient(to bottom right, $clrg1, $clrg2);
 	// @include flex(column);
+	background: #fff url('../src/pattern2.png');
+	background-size: 25%;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: repeat;
 	padding: 0 13vw;
 	
 	&:before{
 		content: "";
 		@include background-fixed;
-		background: linear-gradient(to bottom right, $clrg1, $clrg2);
+		background: linear-gradient(to bottom right, transparentize($clrg1, 0.1), transparentize($clrg2, 0.25));
+		background-position: center;
+		background-repeat: repeat;
+		// background: linear-gradient(to bottom right, $clrg1, $clrg2);
 		// background: linear-gradient(to bottom right, #545, #312);
 		// background: linear-gradient(to bottom right, #333, #111);
 		z-index: -2;
