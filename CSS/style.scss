@@ -136,6 +136,11 @@ $herobr: 5px;
 body{
 	background-color: $clrbg1;
 	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .hero{
@@ -370,6 +375,26 @@ hr{
 	z-index: 99;
 }
 
+.go-button{
+	position: absolute;
+	z-index: 80;
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid white;
+	padding: 25px;
+	color: white;
+	font-size: 33px;
+	background: none;
+	border-radius: 1000px;
+	
+	transition-duration: 255ms;
+	&:hover{
+		border-color: $clrbright;
+		color: $clrbright;
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+}
 
 
 

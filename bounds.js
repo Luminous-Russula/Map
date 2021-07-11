@@ -13,6 +13,10 @@ function closeBounds(){
         if(boundsInd >= 1){
             clearInterval(ctx.bounds)
             boundsInd = 1
+            setTimeout(()=>{
+                window.scrollTo(0, 10**4)
+                openBounds()
+            }, 50)
         }
         updateBounds()
     }, 10)
@@ -53,19 +57,16 @@ function updateBounds(){
     ctx.fill()
 }
 
-document.onclick = (e)=>{
-    if(boundsInd && boundsInd != 1){return null}
-    if(boundsInd){
-        openBounds()
-    }
-    else {
+document.body.onload = ()=>{
+    setTimeout(()=>{
+        window.scrollTo(0, 0)
+    }, 10)
+    let goBtn = document.body.addElement('go-button', 'button')
+    goBtn.innerText = 'Начать'
+    goBtn.onclick = (e)=> {
         closeBounds()
     }
 }
-
-
-
-
 
 
 
