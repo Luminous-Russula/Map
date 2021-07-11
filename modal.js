@@ -51,7 +51,7 @@ function popUp(src = ''){
     })
 }
 
-popUp('lorem')
+// popUp('lorem')
 
 
 
