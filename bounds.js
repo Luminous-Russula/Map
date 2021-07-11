@@ -36,24 +36,22 @@ function openBounds(){
 function updateBounds(){
     ctx.clearRect(0, 0, cnv.width, cnv.height)
     
-    ctx.fillStyle = '#fff'
-    ctx.strokeStyle = '#eee'
-    ctx.lineWidth = 5
+    ctx.fillStyle = '#ddd'
     
     ctx.beginPath()
     ctx.moveTo(0, 0)
     ctx.lineTo(cnv.width * boundsInd, 0)
     ctx.lineTo(0, cnv.height * boundsInd)
     ctx.closePath()
-    ctx.stroke()
     ctx.fill()
     
+    
+    ctx.fillStyle = '#555'
     ctx.beginPath()
     ctx.moveTo(cnv.width, cnv.height)
     ctx.lineTo(cnv.width, cnv.height * (1 - boundsInd))
     ctx.lineTo(cnv.width * (1 - boundsInd), cnv.height)
     ctx.closePath()
-    ctx.stroke()
     ctx.fill()
 }
 
