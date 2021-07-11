@@ -1,4 +1,4 @@
-const SLIDE = 200
+const SLIDE = 230
 
 for(let direction of 'left right'.split(' ')){
     let spin = direction == 'left' ? 1 : -1
