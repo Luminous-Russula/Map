@@ -238,17 +238,21 @@ hr{
 	
 	&__gitlink{
 		font-size: 33px;
-		color: $clrbright;
+		color: $clrbg2;
 		border-radius: 50%;
 		padding: 5px;
-		border: 3px solid $clrbright;
+		border: 3px solid $clrbg2;
 		
 		@include flex;
 		@include makeConvex($clrbg1, 5px, 10px, 100%, 50%);
 		
 		transition-duration: 255ms;
 		&:hover{
-			@include makeConvex($clrbg1, 7px, 10px, 100%, 75%);
+			color: $clrbright;
+			border-color: $clrbright;
+		}
+		&:active{
+			@include makeConcave($clrbg1, 5px, 10px, 100%, 50%);
 		}
 	}
 }
@@ -329,8 +333,15 @@ hr{
 				border-radius: 50%;
 				color: mix(mix(#000, $clrbg1, 5%), $clrbright, 95%);
 				@include textConvex($clrbright, -1px, 3px, 90%, 50%);
-				
 				@include makeConvex($clrbright, 2px, 5px, 90%, 25%);
+				
+				transition-duration: 255ms;
+				&:hover{
+					background-color: mix($clrbright, $clrbg1, 25%);
+				}
+				&:active{
+					@include makeConcave($clrbright, 2px, 5px, 90%, 25%);
+				}
 			}
 			
 			&-wrapper{
@@ -404,7 +415,66 @@ hr{
 	user-select: none; /* Standard */
 }
 
-
+.popup{
+	z-index: 999;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 75vw;
+	height: 90vh;
+	border-radius: 10px;
+	
+	background-color: $clrbg1;
+	padding: 50px;
+	
+	box-shadow: 0 0 0 10000px #000a;
+	
+	@include flex;
+	&-wrapper{
+		width: 100%;
+		height: 100%;
+		@include flex(column);
+		justify-content: flex-start;
+	}
+	
+	&__text{
+		font-size: 20px;
+		color: $clrbg2;
+		@include makeConcave($clrbg1, 5px, 10px, 25%, 5%);
+		padding: 25px;
+		border-radius: 25px;
+		flex-basis: 100%;
+	}
+	
+	&__img{
+		max-height: 66%;
+		object-fit: contain;
+		border-radius: 10px;
+		margin-bottom: 50px;
+	}
+	
+	&__cross{
+		position: absolute;
+		right: 25px;
+		top: 25px;
+		width: 66px;
+		height: 66px;
+		border-radius: 50%;
+		color: $clrbg2;
+		border: 2px solid $clrbg2;
+		font-size: 50px;
+		font-weight: 900;
+		background-color: transparent;
+		
+		@include makeConcave($clrbg1, -5px, 10px, 66%, 15%);
+		
+		transition-duration: 255ms;
+		&:hover{
+			@include makeConcave($clrbg1, 5px, 10px, 66%, 15%);
+		}
+	}
+}
 
 
 

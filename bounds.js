@@ -46,7 +46,7 @@ function updateBounds(){
     ctx.fill()
     
     
-    ctx.fillStyle = '#555'
+    ctx.fillStyle = '#ddd'
     ctx.beginPath()
     ctx.moveTo(cnv.width, cnv.height)
     ctx.lineTo(cnv.width, cnv.height * (1 - boundsInd))
