@@ -283,6 +283,7 @@ hr{
 			font-size: 44px;
 			color: $clrbg2;
 			background-color: $clrbg1;
+			z-index: 50;
 			
 			width: 100%;
 			height: 100%;
@@ -333,14 +334,26 @@ hr{
 				margin: 0 15px;
 				background-color: $clrbg1;
 				
-				&>.advice:not(:last-child){
+				overflow: hidden;
+				max-width: calc(100px * 5 + 15px * 8);
+				justify-content: flex-start;
+				& .carousel{
+					@include flex;
+					justify-content: flex-start;
+					width: auto;
+					transition-duration: 255ms;
+				}
+				
+				& .item:not(:last-child){
 					margin-right: 15px;
 				}
-				&>.advice{
+				& .item{
 					@include makeConcave(mix($clrbg2, $clrbright), 2px, 5px, 90%, 25%);
+					@include flex;
 					border-radius: 50%;
 					background-color: #aaaa;
-					padding: 50px;
+					width: 100px;
+					height: 100px;
 				}	
 			}
 		}
