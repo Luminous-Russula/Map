@@ -47,6 +47,84 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 
 
+// 888b     d888 d8b          d8b          
+// 8888b   d8888 Y8P          Y8P          
+// 88888b.d88888                           
+// 888Y88888P888 888 888  888 888 88888b.  
+// 888 Y888P 888 888 `Y8bd8P' 888 888 "88b 
+// 888  Y8P  888 888   X88K   888 888  888 
+// 888   "   888 888 .d8""8b. 888 888  888 
+// 888       888 888 888  888 888 888  888 
+@mixin flex($orientation:row) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: $orientation;
+}
+
+@mixin center($position: absolute){
+	position: $position;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);	
+}
+
+@mixin imageScale($x:200px, $y:$x, $fit:contain){
+	width: $x;
+	height: $y;
+	object-fit: $fit;
+}
+
+@mixin makeConvex($primclr:#fa5, $offset:5px, $scale:20px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	box-shadow: 
+	$offp $offp $scale $clrdark,
+	$offm $offm $scale $clrlight,
+	;
+}
+
+@mixin makeConcave($primclr:#fa5, $offset:5px, $scale:20px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	box-shadow: 
+	$offp $offp $scale $clrdark inset,
+	$offm $offm $scale $clrlight inset,
+	;
+}
+
+
+@mixin textConvex($primclr:#fa5, $offset:3px, $scale:5px, $lighten:50%, $darken:50%){
+	$offp: $offset;
+	$offm: -$offset;
+	
+	$clrdark: mix(#000, $primclr, $darken);
+	$clrlight: mix(#fff, $primclr, $lighten);
+		
+	text-shadow: 
+	$offm $offm $scale $clrlight,
+	$offp $offp $scale $clrdark,
+	;
+}
+
+$clrbg1: #d9d9d9;
+$clrbg2: #555;
+$clrbright: #fa5;
+
+$clrhero: #555;
+$clrherobord: transparent;
+$heropadding: 50px;
+$herocorn: 50px;
+$herobr: 5px;
+
 // 888b     d888          d8b          
 // 8888b   d8888          Y8P          
 // 88888b.d88888                       
@@ -55,275 +133,359 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 // 888  Y8P  888 .d888888 888 888  888 
 // 888   "   888 888  888 888 888  888 
 // 888       888 "Y888888 888 888  888 
-
-$clrg1: hsl(348, 50%, 95%);
-$clrg2: hsl(348, 50%, 17%);
-$clrtxt1: hsl(348, 100%, 97%);
-
-@mixin flex($orientation: row){
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: $orientation;
-}
-
-@mixin light-text {
-	color: $clrtxt1;
-	text-shadow: 0 0 3px #000,0 0 3px #000,0 0 3px #000,0 0 3px #000,;
-}
-
-@mixin background-fixed {
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	width: 100vw;
-	height: 100vh;
-	transform: translate(-50%, -50%);
-}
-
-*{
-	z-index: 3;
-}
-
 body{
-	padding: 0;
-	margin: 0;
-	// overflow: hidden;
-	background-color: #000;
+	background-color: $clrbg1;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
-.dicesbg{
-	@include background-fixed;
-	z-index: -1;
-	pointer-events: none;
+::-webkit-scrollbar {
+  display: none;
 }
 
-.bg{
-	position: relative;
-	z-index: 1;
-	// background: linear-gradient(to bottom right, $clrg1, $clrg2);
-	// @include flex(column);
-	padding: 0 13vw;
+.hero{
+	overflow: hidden;
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	
-	&:before{
-		content: "";
-		@include background-fixed;
-		background: linear-gradient(to bottom right, $clrg1, $clrg2);
-		// background: linear-gradient(to bottom right, #545, #312);
-		// background: linear-gradient(to bottom right, #333, #111);
-		z-index: -2;
+	&__panel1, &__panel2{
+		position: absolute;
+		background-color: $clrhero;
+		border: 5px solid $clrherobord;
+	}
+	
+	&__love, &__map{
+		z-index: 10;
+		position: absolute;
+		text-align: center;
+		background-color: $clrbg1;
+		color: #aaa;
+		font-size: 10vh;
+		width: 2000px;
+		padding: 5vh;
+		box-shadow: 0 0 25px #0007;
+		
+		font-family: 'Ubuntu', sans-serif;
+		text-transform: uppercase;
+		letter-spacing: 2.5vh;
+		
+		@include textConvex($clrbg1, 1px, 3px, 75%, 75%);
+	}
+	
+	&__panel1{
+		top: 50%;
+		left: 50%;
+		transform: translate(-100%, -50%);
+		
+		width: calc(50vw - #{$heropadding});
+		height: calc(100vh - #{$heropadding});
+		
+		border-radius: $herobr 0 5px $herobr;
+		border-right: none;
+		border-bottom: none;
+	}
+	
+	&__panel2{
+		top: 50%;
+		right: 50%;
+		transform: translate(100%, -50%) translateY(- $herocorn / 2) translateX(-5px);
+		
+		width: calc(50vw - #{$heropadding});
+		height: calc(100vh - #{$heropadding} - #{$herocorn});
+		
+		border-radius: 0 $herobr $herobr 0;
+		border-left: none;
+		border-bottom: none;
+	}
+	
+	&__love{
+		left: 27%;
+		top: 50%;
+		transform: translate(-50%, -50%) rotate(60deg);
+	}
+	
+	&__map{
+		right: 30%;
+		top: 50%;
+		transform: translate(50%, -50%) rotate(60deg);
 	}
 }
 
-.main, .header, .footer{
-	width: 100%;
-	@include flex(column);
+.canvas3d{
+	z-index: 5;
+	position: absolute;
+}
+
+.filler{
+	height: 100vh;
+}
+
+hr{
+	height: 2px;
+	width: 100vw;
+	background: radial-gradient(circle at center, #555, $clrbg1);
+}
+
+.footer{
+	@include flex;
+	justify-content: space-between;
+	padding: 25px 200px;
+	font-size: 16px;
+	
+	&__gitlink{
+		font-size: 33px;
+		color: $clrbg2;
+		border-radius: 50%;
+		padding: 5px;
+		border: 3px solid $clrbg2;
+		
+		@include flex;
+		@include makeConvex($clrbg1, 5px, 10px, 100%, 50%);
+		
+		transition-duration: 255ms;
+		&:hover{
+			color: $clrbright;
+			border-color: $clrbright;
+		}
+		&:active{
+			@include makeConcave($clrbg1, 5px, 10px, 100%, 50%);
+		}
+	}
 }
 
 .main{
-	justify-content: space-around;
-	
-	
-	&__title{
-		@include light-text;
-		font-size: 50px;
-		padding: 50px;
-		width: 50%;
-		text-align: center;
-	}
-	
-	&__descr{
-		
-		padding: 50px;
-		width: 75%;
-		text-align: center;
-		line-height: 2em;
-		font-size: 20px;
-		
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-		border-radius: 10px;
-		@include light-text;
-		box-shadow: 
-		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
-		
-		margin-bottom: 2vh;
-	}
-	
-	&__gobtn{
-		@include light-text;
-		border-radius: 50%;
-		width: 100px;
-		height: 100px;
-		font-size: 200%;
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.3), transparentize($clrg2, 0.5));
-		box-shadow: -5px -5px 10px transparentize($clrg1, 0.25) inset, 5px 5px 10px transparentize($clrg2, 0.25) inset,;
-		cursor: pointer;
-		
-		transition-duration: 125ms;
-		&:hover{
-			transform: scale(1.15);
-		}
-		&:active{
-			transform: scale(1);
-			filter: brightness(0.9);
-		}
-		margin-bottom: 2vh;
-	}
-	
-	margin-top: 5vh;
-	margin-bottom: 5vh;
-}
-
-.sect{
-	backdrop-filter: blur(10px);
-	border-radius: 15px;
-	border: 2px solid #fab3;
-	height: 90%;
-	box-shadow: 0 0 25px #0005;
-}
-
-.level{
-	height: 50%;
-	margin-bottom: 5vh;
-	padding: 50px 0;
-	
-	background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-	
 	@include flex(column);
 	justify-content: space-around;
+	padding: 25px 300px;
+	height: calc(100vh - 73px);
 	
-	&__title{
-		margin-bottom: 5vh;
-		font-size: 33px;
-		@include light-text;
-	}
-	
-	&-content{
-		flex-basis: 100%;
-
-		width: 75%;		
-		background: linear-gradient(to bottom right, transparentize($clrg1, 0.5), transparentize($clrg2, 0.9));
-		border-radius: 10px;
-		@include light-text;
-		box-shadow: 
-		-5px -5px 20px transparentize($clrg1, 0.5) inset, 5px 5px 20px transparentize($clrg2, 0.5) inset,;
-		
+	&-advice{
+		padding: 25px;
+		width: 100%;
 		@include flex(column);
-		justify-content: space-around;
-		flex-wrap: wrap;
-		padding: 15px;
-		padding-right: 0;
-		padding-bottom: 0;
 		
-		&-row{
+		position: relative;
+		overflow: hidden;
+		
+		border-radius: 5px;
+		
+		&:hover{
+			&>.main-advice__title{
+				// opacity: 0;
+				transform: translateY(-100%);
+				&:after{
+					transform: translate(50%, 3px);
+				}
+				&:before{
+					transform: translate(-50%, 3px);
+				}
+			}
+		}
+		
+		&__title{
+			position: absolute;
+			margin-bottom: 25px;
+			font-size: 44px;
+			color: $clrbg2;
+			background-color: $clrbg1;
+			z-index: 50;
+			
 			width: 100%;
+			height: 100%;
 			@include flex;
-			justify-content: space-around;
-			&>*{
-				width: 100px;
-				height: 100px;
+			transition-duration: 400ms;
+			transition-delay: 400ms;	
+			
+			&:after, &:before{
+				transition-duration: 255ms;
+				position: absolute;
+				content: "";
+				height: 3px;
+				opacity: 0.5;
+				width: 100%;
+			}
+			
+			&:after{
+				background: linear-gradient(to right, #000, transparent 25%);
+				transform: translateX(50%) translateX(200px);
+			}
+			&:before{
+				background: linear-gradient(to left, #000, transparent 25%);
+				transform: translateX(-50%) translateX(-200px);
+			}
+		}
+		
+		&-content{
+			@include flex;
+			padding: 0 15px;
+			
+			&__left, &__right{
+				@include flex;
+				font-size: 55px;
+				font-weight: 900;
+				background-color: transparent;
+				width: 75px;
+				height: 75px;
 				border-radius: 50%;
-				border: 5px solid #0001;
+				color: mix(mix(#000, $clrbg1, 5%), $clrbright, 95%);
+				@include textConvex($clrbright, -1px, 3px, 90%, 50%);
+				@include makeConvex($clrbright, 2px, 5px, 90%, 25%);
+				
+				transition-duration: 255ms;
+				&:hover{
+					background-color: mix($clrbright, $clrbg1, 25%);
+				}
+				&:active{
+					@include makeConcave($clrbright, 2px, 5px, 90%, 25%);
+				}
+			}
+			
+			&-wrapper{
+				@include flex;
+				padding: 15px;
+				margin: 0 15px;
+				background-color: $clrbg1;
+				
+				overflow: hidden;
+				// max-width: calc(100px * 5 + 15px * 8);
+				width: calc(115px * 5);
+				justify-content: flex-start;
+				& .carousel{
+					@include flex;
+					justify-content: flex-start;
+					width: auto;
+					transition-duration: 255ms;
+				}
+				
+				& .item:not(:last-child){
+					margin-right: 15px;
+				}
+				& .item{
+					@include makeConcave(mix($clrbg2, $clrbright), 2px, 5px, 90%, 25%);
+					@include flex;
+					border-radius: 50%;
+					background-color: #aaaa;
+					width: 100px;
+					height: 100px;
+				}	
 			}
 		}
 	}
 }
 
-
-.footer{
-	@include flex;
-	@include light-text;
-	justify-content: space-around;
-	padding: 15px 0;
-	
-	&__git{
-		font-size: 50px;
-		color: $clrg1;	
-		transition-duration: 255ms;
-		&:hover{
-			transform: scale(1.25);
-			filter: drop-shadow(0 0 3px $clrg1);
-		}
-	}
+.bounds{
+	pointer-events: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 99;
 }
 
-.contactus{
-	@include light-text;
-	position: fixed;
-	right: 5vh;
-	top: 85vh;
-	font-size: 50px;
-	padding: 15px;
-	border-radius: 50%;
-	z-index: 3;
-	
-	border: 7px solid $clrg1;
-	opacity: 0.25;
-	
-	cursor: pointer;
+.go-button{
+	position: absolute;
+	z-index: 80;
+	top: 85%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid white;
+	padding: 25px;
+	color: white;
+	font-size: 33px;
+	background: none;
+	border-radius: 1000px;
 	
 	transition-duration: 255ms;
 	&:hover{
-		transform: scale(1.1);
-		opacity: 1;
+		border-color: $clrbright;
+		color: $clrbright;
+		transform: translate(-50%, -50%) scale(1.1);
 	}
 }
 
-::-webkit-scrollbar{
-	width: 0;
+.unselectable{
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
-.scrollbar{
-	$w : 5px;
+
+.popup{
+	z-index: 999;
 	position: fixed;
-	z-index: 3;
-	right: 0;
-	top: 0;
-	height: 100px;
-	width: $w;
-	border-radius: $w;
-	background: linear-gradient(to bottom, transparentize($clrg2, 1), $clrg1, transparentize($clrg2, 1));
-	box-shadow: 0 0 1px #fff5 inset;
-}
-
-
-@media screen and (max-width: 900px){
-	.bg{
-		padding: 10px;
-	}
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 75vw;
+	height: 90vh;
+	border-radius: 10px;
 	
-	.scrollbar{
-		display: none;
-	}
-	.sect{
-		height: auto;
+	background-color: $clrbg1;
+	padding: 50px;
+	
+	box-shadow: 0 0 0 10000px #000a;
+	
+	@include flex;
+	&-wrapper{
 		width: 100%;
-		margin-bottom: 10px;
+		height: 100%;
+		@include flex(column);
+		justify-content: flex-start;
 	}
 	
-	.main{
-		margin-top: 10px;
-		margin-bottom: 10px;
-		padding: 10px 25px;
-		&__title, &__descr{
-			padding: 5px;
-			width: 100%;
-			margin-bottom: 10px;
-		}
-		&__descr{
-			font-size: 16px;
-			margin-bottom: 20px;
-		}
-		&__gobtn{
-			display: none;
-			width: 75px;
-			height: 75px;
-			font-size: 150%;
-		}
+	&__text{
+		font-size: 20px;
+		color: $clrbg2;
+		@include makeConcave($clrbg1, 5px, 10px, 25%, 5%);
+		padding: 25px;
+		border-radius: 25px;
+		flex-basis: 100%;
 	}
-	.contactus{
-		display: none;
+	
+	&__img{
+		max-height: 66%;
+		object-fit: contain;
+		border-radius: 10px;
+		margin-bottom: 50px;
+	}
+	
+	&__cross{
+		position: absolute;
+		right: 25px;
+		top: 25px;
+		width: 66px;
+		height: 66px;
+		border-radius: 50%;
+		color: $clrbg2;
+		border: 2px solid $clrbg2;
+		font-size: 50px;
+		font-weight: 900;
+		background-color: transparent;
+		
+		@include makeConcave($clrbg1, -5px, 10px, 66%, 15%);
+		
+		transition-duration: 255ms;
+		&:hover{
+			@include makeConcave($clrbg1, 5px, 10px, 66%, 15%);
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
