@@ -340,7 +340,8 @@ hr{
 				background-color: $clrbg1;
 				
 				overflow: hidden;
-				max-width: calc(100px * 5 + 15px * 8);
+				// max-width: calc(100px * 5 + 15px * 8);
+				width: calc(115px * 5);
 				justify-content: flex-start;
 				& .carousel{
 					@include flex;
